@@ -8,6 +8,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 
+/**
+ * Represents a <a href="https://en.wikipedia.org/wiki/Time_series" >time series</a>.
+ *
+ * @param <T> the type of value on each data point
+ *
+ * @author <a href="mailto:me@sixro.net">sixro</a>
+ * @since 1.0
+ */
 public class TimeSeries<T> extends Observable {
 
     private final String name;
@@ -28,7 +36,7 @@ public class TimeSeries<T> extends Observable {
         dataPoints.add(dataPoint);
 
         setChanged();
-        notifyObservers(new DataPointAddedEvent<>(this, dataPoint));
+        notifyObservers(new DataPointAddedEvent<>(this, System.currentTimeMillis(), dataPoint));
     }
 
     @Override
@@ -51,11 +59,26 @@ public class TimeSeries<T> extends Observable {
         }
     }
 
-    public static class DataPointAddedEvent<T> extends EventObject {
+    public static abstract class Event extends EventObject {
+
+        protected final long timestamp;
+
+        protected Event(Object source, long timestamp) {
+            super(source);
+            this.timestamp = timestamp;
+        }
+
+        public long getTimestamp() {
+            return timestamp;
+        }
+
+    }
+
+    public static class DataPointAddedEvent<T> extends Event {
         private final DataPoint<T> dataPoint;
 
-        public DataPointAddedEvent(Object source, DataPoint<T> dataPoint) {
-            super(source);
+        public DataPointAddedEvent(Object source, long timestamp, DataPoint<T> dataPoint) {
+            super(source, timestamp);
             this.dataPoint = dataPoint;
         }
 
@@ -66,7 +89,9 @@ public class TimeSeries<T> extends Observable {
         @Override
         public String toString() {
             return "DataPointAddedEvent{" +
-                    "dataPoint=" + dataPoint +
+                    "source=" + source +
+                    ",timestamp=" + timestamp +
+                    ",dataPoint=" + dataPoint +
                     '}';
         }
     }
