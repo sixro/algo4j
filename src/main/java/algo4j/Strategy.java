@@ -5,4 +5,6 @@ package algo4j;
  */
 public interface Strategy {
 
+    void next(Broker broker);
+
 }

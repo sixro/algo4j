@@ -5,4 +5,10 @@ package algo4j;
  */
 public interface Broker {
 
+    boolean inMarket();
+
+    void enter();
+
+    void exit();
+
 }
