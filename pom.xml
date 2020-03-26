@@ -16,13 +16,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.sixro</groupId>
-            <artifactId>themissingobjects</artifactId>
-            <version>0.0.7</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>

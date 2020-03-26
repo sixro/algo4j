@@ -2,8 +2,8 @@ package algo4j;
 
 import java.time.ZonedDateTime;
 
-public interface TimeSeries<D, T> extends Iterable<D> {
+public interface TimeSeries extends Iterable<Bar> {
 
-    void add(D datum, T time);
+    void add(Bar bar, ZonedDateTime time);
 
 }

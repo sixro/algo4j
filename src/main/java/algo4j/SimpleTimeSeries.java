@@ -1,24 +1,25 @@
 package algo4j;
 
+import java.time.ZonedDateTime;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SimpleTimeSeries<D, T> implements TimeSeries<D, T> {
+public class SimpleTimeSeries implements TimeSeries {
 
-    private final List<DataPoint<D, T>> list;
+    private final List<DataPoint<Bar, ZonedDateTime>> list;
 
     public SimpleTimeSeries() {
         this.list = new LinkedList<>();
     }
 
     @Override
-    public void add(D datum, T time) {
-        list.add(new DataPoint<>(datum, time));
+    public void add(Bar bar, ZonedDateTime time) {
+        list.add(new DataPoint<>(bar, time));
     }
 
     @Override
-    public Iterator<D> iterator() {
+    public Iterator<Bar> iterator() {
         return list.stream()
             .map((it) -> it.datum)
             .iterator();
