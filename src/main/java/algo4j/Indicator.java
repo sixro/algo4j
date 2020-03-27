@@ -1,7 +1,6 @@
 package algo4j;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
 
 public interface Indicator {
 

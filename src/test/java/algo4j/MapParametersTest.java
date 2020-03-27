@@ -1,9 +1,9 @@
-package algo4j.parameter;
+package algo4j;
 
 import static org.junit.Assert.*;
 
+import algo4j.MapParameters;
 import algo4j.parameter.IntParameter;
-import algo4j.parameter.MapParameters;
 import org.junit.Test;
 
 public class MapParametersTest {

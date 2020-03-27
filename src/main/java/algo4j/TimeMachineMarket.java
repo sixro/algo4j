@@ -17,8 +17,8 @@ public class TimeMachineMarket implements Market{
     }
 
     @Override
-    public TimeSeries timeSeries(String isin) {
-        TimeSeries timeSeries = delegate.timeSeries(isin);
+    public TimeSeries timeSeries(String isin, TimeFrame timeFrame) {
+        TimeSeries timeSeries = delegate.timeSeries(isin, timeFrame);
         return timeSeries.till(currentTime);
     }
 

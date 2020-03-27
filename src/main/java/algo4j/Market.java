@@ -6,6 +6,6 @@ package algo4j;
 public interface Market {
 
     // TODO use the new version of themissingobjects containing the vo ISIN
-    TimeSeries timeSeries(String isin);
+    TimeSeries timeSeries(String isin, TimeFrame timeFrame);
 
 }
