@@ -13,9 +13,24 @@ public class SimpleTimeSeries implements TimeSeries {
         this.list = new LinkedList<>();
     }
 
+    private SimpleTimeSeries(List<DataPoint<Bar, ZonedDateTime>> list) {
+        this.list = list;
+    }
+
     @Override
     public void add(Bar bar, ZonedDateTime time) {
         list.add(new DataPoint<>(bar, time));
+    }
+
+    @Override
+    public int length() {
+        return list.size();
+    }
+
+    @Override
+    public TimeSeries sub(int index) {
+        List<DataPoint<Bar, ZonedDateTime>> l = list.subList(index, length());
+        return new SimpleTimeSeries(l);
     }
 
     @Override

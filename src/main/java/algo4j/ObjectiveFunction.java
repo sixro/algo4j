@@ -4,6 +4,6 @@ import java.math.BigDecimal;
 
 public interface ObjectiveFunction {
 
-    BigDecimal evaluate();
+    BigDecimal evaluate(Orders orders);
 
 }
