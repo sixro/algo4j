@@ -8,6 +8,6 @@ public interface TimeSeries extends Iterable<Bar> {
 
     int length();
 
-    TimeSeries sub(int index);
+    TimeSeries till(ZonedDateTime time);
 
 }

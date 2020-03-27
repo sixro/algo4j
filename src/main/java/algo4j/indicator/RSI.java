@@ -5,6 +5,9 @@ import algo4j.TimeSeries;
 
 import java.math.BigDecimal;
 
+/**
+ * TODO calc following this https://www.investopedia.com/terms/r/rsi.asp and this https://www.grtrends.com/sg/momentum/sg_rsi.html
+ */
 public class RSI implements Indicator {
 
     private final int periods;

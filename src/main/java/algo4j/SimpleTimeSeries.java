@@ -28,9 +28,8 @@ public class SimpleTimeSeries implements TimeSeries {
     }
 
     @Override
-    public TimeSeries sub(int index) {
-        List<DataPoint<Bar, ZonedDateTime>> l = list.subList(index, length());
-        return new SimpleTimeSeries(l);
+    public TimeSeries till(ZonedDateTime time) {
+        return null;
     }
 
     @Override
