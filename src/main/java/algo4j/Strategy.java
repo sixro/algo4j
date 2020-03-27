@@ -15,6 +15,6 @@ public interface Strategy {
      * @param market the market
      * @param tradingInstrument a trading instrument
      */
-    void run(Market market, TradingInstrument tradingInstrument);
+    void run(Parameters parameters, Market market, TradingInstrument tradingInstrument);
 
 }
