@@ -1,13 +1,7 @@
 package algo4j;
 
-import java.time.ZonedDateTime;
+public interface TimeSeries<T> extends Iterable<T> {
 
-public interface TimeSeries extends Iterable<Bar> {
-
-    void add(Bar bar, ZonedDateTime time);
-
-    int length();
-
-    TimeSeries till(ZonedDateTime time);
+    T at(int index);
 
 }
