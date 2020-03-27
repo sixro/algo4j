@@ -31,6 +31,16 @@ public class SMATest {
         assertEquals(new BigDecimal("5.5"), sma.value(ts, 0));
     }
 
+    @Test public void calculate_at_specified_index() {
+        SimpleTimeSeries ts = new SimpleTimeSeries();
+        ts.add(new SimpleBar(TEN, TEN, TEN, ONE), ZonedDateTime.now());
+        ts.add(new SimpleBar(TEN, TEN, TEN, ONE), ZonedDateTime.now());
+        ts.add(new SimpleBar(TEN, TEN, TEN, TEN), ZonedDateTime.now());
+
+        SMA sma = new SMA(2);
+        assertEquals(ONE, sma.value(ts, 1));
+    }
+
     @Test public void calculate_on_median_price() {
         SimpleTimeSeries ts = new SimpleTimeSeries();
         ts.add(new SimpleBar(TEN, ZERO, ZERO, ONE), ZonedDateTime.now());

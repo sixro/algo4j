@@ -25,6 +25,7 @@ public class SMA implements Indicator {
     @Override
     public BigDecimal value(TimeSeries timeSeries, int index) {
         BigDecimal sum = StreamSupport.stream(timeSeries.spliterator(), false)
+                .skip(index)
                 .map(function)
                 .limit(periods)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
