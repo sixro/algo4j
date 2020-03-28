@@ -35,4 +35,9 @@ public class DataPoint<T> {
     public LocalDateTime datetime() {
         return datetime;
     }
+
+    @Override
+    public String toString() {
+        return "{" + value + ", datetime=" + datetime + '}';
+    }
 }

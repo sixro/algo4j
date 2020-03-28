@@ -19,4 +19,6 @@ public interface TimeSeries<T, E extends TimeSeries<T, E>> {
 
     LocalDateTime datetime(int index);
 
+    int length();
+
 }

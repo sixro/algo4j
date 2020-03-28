@@ -7,6 +7,7 @@ import algo4j.timeseries.NumericalTimeSeries;
 import java.math.BigDecimal;
 import java.util.List;
 
+// TODO impl
 public class RSI extends ListNumericalTimeSeries {
     private RSI(List<DataPoint<BigDecimal>> list) {
         super(list);

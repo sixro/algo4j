@@ -17,4 +17,9 @@ public class ExampleTimeSeries<V> implements TimeSeries<String, ExampleTimeSerie
     public LocalDateTime datetime(int index) {
         return null;
     }
+
+    @Override
+    public int length() {
+        return 0;
+    }
 }

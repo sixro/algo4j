@@ -37,6 +37,11 @@ public class HorizontalLine implements NumericalTimeSeries {
     }
 
     @Override
+    public int length() {
+        throw new UnsupportedOperationException("unsupported... because infinite. Review your TA");
+    }
+
+    @Override
     public boolean crossesOver(NumericalTimeSeries series) {
         // TODO impl
         return false;
