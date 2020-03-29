@@ -6,9 +6,9 @@ import java.util.List;
 
 public class ListOHLC implements OHLC {
 
-    private final List<DataPoint<? extends OHLC.Value>> list;
+    private final List<DataPoint<Value>> list;
 
-    public ListOHLC(List<DataPoint<? extends OHLC.Value>> list) {
+    public ListOHLC(List<DataPoint<Value>> list) {
         this.list = list;
     }
 
