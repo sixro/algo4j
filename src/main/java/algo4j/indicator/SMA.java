@@ -35,20 +35,16 @@ public class SMA extends LazyNumericalTimeSeries implements Indicator {
 
     protected NumericalTimeSeries createCopy(int index, SortedMap<Integer, DataPoint<BigDecimal>> cached) {
         NumericalTimeSeries at = delegate.at(index);
-        System.out.println("Creating copy of SMA " + at);
         return new SMA(cached, periods, delegate.at(index));
     }
 
     protected DataPoint<BigDecimal> evaluateDataPoint(int index) {
-        System.out.println("evaluating data point at " + index);
         BigDecimal sum = BigDecimal.ZERO;
         for (int i = index; i < index + periods; i++) {
-            System.out.println("adding " + delegate.value(i));
             sum = sum.add(delegate.value(i));
         }
         BigDecimal value = sum.divide(BigDecimal.valueOf(periods));
 
-        System.out.println("returning " + value);
         return DataPoint.of(value, delegate.datetime(index));
     }
 

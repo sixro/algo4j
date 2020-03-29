@@ -24,11 +24,10 @@ public abstract class LazyNumericalTimeSeries extends AbstractNumericalTimeSerie
 
     @Override
     public NumericalTimeSeries at(int index) {
-        System.out.println("at " + index);
-        SortedMap<Integer, DataPoint<BigDecimal>> c = (cached.isEmpty())
-            ? Collections.emptySortedMap()
-            : this.cached.subMap(index, this.cached.lastKey());
-        return createCopy(index, c);
+        TreeMap<Integer, DataPoint<BigDecimal>> newCache = new TreeMap<>();
+        SortedMap<Integer, DataPoint<BigDecimal>> subCache = cached.tailMap(index);
+        subCache.forEach((idx, dp) -> newCache.put(idx.intValue() -index, dp));
+        return createCopy(index, newCache);
     }
 
     @Override
