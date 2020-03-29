@@ -4,6 +4,15 @@ import java.math.BigDecimal;
 import java.util.SortedMap;
 import java.util.function.Function;
 
+/**
+ * Represents a lazy numerical time series evaluating values at a specific index using the specified function.
+ *
+ * @param <I> type of input value
+ * @param <E> time series extending this
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
+ */
 public class FunctionLazyNumerical<I, E extends TimeSeries<I, E>> extends LazyNumerical {
 
     private final TimeSeries<I, E> origin;

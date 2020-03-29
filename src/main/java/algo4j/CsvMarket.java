@@ -14,6 +14,23 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Represents a {@code Market} working with <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>
+ * files found in a specific folder or classpath.
+ *
+ * <p>
+ * The CSV files has to be named with the ISIN code (e.g. {@code IE00BKM4GZ66.csv}).<br>
+ * Here an example on how to use this object:
+ * </p>
+ * <pre>
+ *     Market market = CsvMarket.fromClasspath("/csv-market");
+ *     OHLC ts = market.ohlc(ISIN.of("IE00BKM4GZ66"));
+ *     ...
+ * </pre>
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
+ */
 public class CsvMarket implements Market {
 
     private final File baseDir;

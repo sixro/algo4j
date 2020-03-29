@@ -1,5 +1,11 @@
 package algo4j.timeseries;
 
+/**
+ * Represents a base class for almost all numerical time series.
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
+ */
 public abstract class AbstractNumerical implements Numerical {
 
     private static final int HIGHER = 1;

@@ -4,6 +4,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Represents an implementation of {@code OHLC} based on list.
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
+ */
 public class ListOHLC implements OHLC {
 
     private final List<DataPoint<Value>> list;

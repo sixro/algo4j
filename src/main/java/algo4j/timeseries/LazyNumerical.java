@@ -5,6 +5,12 @@ import java.time.LocalDateTime;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+/**
+ * Represents a numerical time series evaluating values only when asked.
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
+ */
 public abstract class LazyNumerical extends AbstractNumerical {
 
     private final SortedMap<Integer, DataPoint<BigDecimal>> cached;
