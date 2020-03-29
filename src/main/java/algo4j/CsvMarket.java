@@ -1,5 +1,8 @@
 package algo4j;
 
+import algo4j.timeseries.DataPoint;
+import algo4j.timeseries.ListOHLC;
+import algo4j.timeseries.OHLC;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -7,9 +10,9 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Iterator;
+import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 
 public class CsvMarket implements Market {
 
@@ -30,30 +33,26 @@ public class CsvMarket implements Market {
     }
 
     @Override
-    public TimeSeries timeSeries(String isin, TimeFrame timeFrame) {
-        // TODO in case of higher time frames we should recalculates them. Probably we just need to create an impl of TimeSeries which takes a daily TimeSeries and recalc the data points
-        if (! TimeFrame.DAILY.equals(timeFrame))
-            throw new UnsupportedOperationException("only daily time frame is supported at the moment");
-
-        Reader reader = newReader(isin);
+    public OHLC ohlc(ISIN isin) {
+        Reader reader = newReader(isin.code());
         BufferedReader br = new BufferedReader(reader);
         CSVParser csv = null;
         try {
             csv =  new CSVParser(br, CSVFormat.DEFAULT.withHeader());
-            SimpleTimeSeries timeSeries = new SimpleTimeSeries();
+            List<DataPoint<OHLC.Value>> list = new LinkedList<>();
             for (CSVRecord record: csv) {
-                // TODO if TimeFrame is not intraday it is ok to use LocalDate but I have to convert to ZonedDateTime
-                LocalDate time = LocalDate.parse(record.get(0));
+                // TODO weak but at the moment I support just EOD values... so it is ok
+                LocalDate date = LocalDate.parse(record.get(0));
+                LocalDateTime time = date.atStartOfDay();
                 BigDecimal open = new BigDecimal(record.get(1));
                 BigDecimal high = new BigDecimal(record.get(2));
                 BigDecimal low = new BigDecimal(record.get(3));
                 BigDecimal close = new BigDecimal(record.get(4));
                 BigDecimal volume = new BigDecimal(record.get(5));
-                // TODO probably the zoneId should be known by the market or is a characteristic of the ISIN...
-                ZonedDateTime datetime = time.atStartOfDay().atZone(ZoneId.systemDefault());
-                timeSeries.add(new SimpleBar(open, high, low, close, volume), datetime);
+                list.add(DataPoint.of(ListOHLC.SimpleOHLCValue.of(open, high, low, close, volume), time));
             }
-            return timeSeries;
+            ListOHLC ohlc = new ListOHLC(list);
+            return ohlc;
         } catch (IOException e) {
             throw new RuntimeException("Unable to read time series of ISIN " + isin, e);
         } finally {
@@ -75,4 +74,5 @@ public class CsvMarket implements Market {
             throw new RuntimeException("Unable to read time series in file name '" + filename + "'", e);
         }
     }
+
 }

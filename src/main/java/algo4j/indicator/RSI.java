@@ -1,23 +1,20 @@
 package algo4j.indicator;
 
-import algo4j.Indicator;
-import algo4j.TimeSeries;
+import algo4j.timeseries.DataPoint;
+import algo4j.timeseries.ListNumericalTimeSeries;
+import algo4j.timeseries.NumericalTimeSeries;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-/**
- * TODO calc following this https://www.investopedia.com/terms/r/rsi.asp and this https://www.grtrends.com/sg/momentum/sg_rsi.html
- */
-public class RSI implements Indicator {
-
-    private final int periods;
-
-    public RSI(int periods) {
-        this.periods = periods;
+// TODO impl
+public class RSI extends ListNumericalTimeSeries {
+    private RSI(List<DataPoint<BigDecimal>> list) {
+        super(list);
     }
 
-    @Override
-    public BigDecimal value(TimeSeries timeSeries, int index) {
+    public static RSI of(int periods, NumericalTimeSeries timeSeries) {
         return null;
     }
+
 }

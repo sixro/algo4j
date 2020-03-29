@@ -1,11 +1,18 @@
 package algo4j;
 
+import algo4j.timeseries.OHLC;
+
 /**
- * Represents the market able to provied a time series for a specific instrument.
+ * Represents the market providing timeseries and other data.
  */
 public interface Market {
 
-    // TODO use the new version of themissingobjects containing the vo ISIN
-    TimeSeries timeSeries(String isin, TimeFrame timeFrame);
+    /**
+     * Returns an OHLC time series for the specified ISIN.
+     *
+     * @param isin an isin
+     * @return an OHLC time series
+     */
+    OHLC ohlc(ISIN isin);
 
 }

@@ -1,35 +1,56 @@
 package algo4j.indicator;
 
-import algo4j.Bar;
-import algo4j.Indicator;
-import algo4j.TimeSeries;
+import algo4j.timeseries.DataPoint;
+import algo4j.timeseries.LazyNumericalTimeSeries;
+import algo4j.timeseries.NumericalTimeSeries;
 
 import java.math.BigDecimal;
-import java.util.function.Function;
-import java.util.stream.StreamSupport;
+import java.util.SortedMap;
 
-public class SMA implements Indicator {
+/**
+ * Represents a simple moving average time series.
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
+ */
+public class SMA extends LazyNumericalTimeSeries implements Indicator {
 
     private final int periods;
-    private final Function<Bar, BigDecimal> function;
+    private final NumericalTimeSeries delegate;
 
-    public SMA(int periods) {
-        this(periods, bar -> bar.close());
+    private SMA(int periods, NumericalTimeSeries delegate) {
+        this.periods = periods;
+        this.delegate = delegate;
     }
 
-    public SMA(int periods, Function<Bar, BigDecimal> function) {
+    private SMA(SortedMap<Integer, DataPoint<BigDecimal>> cached, int periods, NumericalTimeSeries delegate) {
+        super(cached);
         this.periods = periods;
-        this.function = function;
+        this.delegate = delegate;
+    }
+
+    public static SMA of(int periods, NumericalTimeSeries timeSeries) {
+        return new SMA(periods, timeSeries);
+    }
+
+    protected NumericalTimeSeries createCopy(int index, SortedMap<Integer, DataPoint<BigDecimal>> cached) {
+        NumericalTimeSeries at = delegate.at(index);
+        return new SMA(cached, periods, delegate.at(index));
+    }
+
+    protected DataPoint<BigDecimal> evaluateDataPoint(int index) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (int i = index; i < index + periods; i++) {
+            sum = sum.add(delegate.value(i));
+        }
+        BigDecimal value = sum.divide(BigDecimal.valueOf(periods));
+
+        return DataPoint.of(value, delegate.datetime(index));
     }
 
     @Override
-    public BigDecimal value(TimeSeries timeSeries, int index) {
-        BigDecimal sum = StreamSupport.stream(timeSeries.spliterator(), false)
-                .skip(index)
-                .map(function)
-                .limit(periods)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return sum.divide(BigDecimal.valueOf(periods));
+    public int length() {
+        return delegate.length() -periods +1;
     }
 
 }
