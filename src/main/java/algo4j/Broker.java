@@ -12,4 +12,8 @@ package algo4j;
  * @since 1.0
  */
 public interface Broker {
+
+    void enterOrder(Order newOrder);
+
+    Orders openOrders(ISIN isin);
 }
