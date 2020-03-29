@@ -5,22 +5,25 @@ package algo4j;
  */
 public interface ISIN {
 
-    static ISIN of(String code) {
-        return new ISIN.Default(code);
+    static ISIN of(final String code) {
+        return new ISIN() {
+
+            private final String _code;
+
+            { this._code = code; }
+
+            @Override
+            public String code() {
+                return _code;
+            }
+
+            @Override
+            public String toString() {
+                return _code;
+            }
+        };
     }
 
     String code();
 
-    class Default implements ISIN {
-        private final String code;
-
-        public Default(String code) {
-            this.code = code;
-        }
-
-        @Override
-        public String code() {
-            return code;
-        }
-    }
 }
