@@ -9,7 +9,7 @@ package algo4j.timeseries;
  * @author <a href="mailto:me@sixro.net" >Sixro</a>
  * @since 1.0
  */
-public interface ComparableTimeSeries<T extends Comparable<T>, E extends ComparableTimeSeries<T, E>> extends TimeSeries<T, E> {
+public interface Comparable<T extends java.lang.Comparable<T>, E extends Comparable<T, E>> extends TimeSeries<T, E> {
 
     boolean crossesOver(E series);
     boolean crossesUnder(E series);

@@ -15,7 +15,7 @@ public class ListNumericalTimeSeriesTest {
         DataPoint<BigDecimal> _1 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-20T00:00:00"));
         DataPoint<BigDecimal> _2 = DataPoint.of(ONE, LocalDateTime.parse("2020-03-19T00:00:00"));
         DataPoint<BigDecimal> _3 = DataPoint.of(TEN, LocalDateTime.parse("2020-03-18T00:00:00"));
-        ListNumericalTimeSeries timeSeries = new ListNumericalTimeSeries(Arrays.asList(_1, _2, _3));
+        ListNumerical timeSeries = new ListNumerical(Arrays.asList(_1, _2, _3));
         assertEquals(ONE, timeSeries.value(1));
     }
 
@@ -23,7 +23,7 @@ public class ListNumericalTimeSeriesTest {
         DataPoint<BigDecimal> _1 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-20T00:00:00"));
         DataPoint<BigDecimal> _2 = DataPoint.of(ONE, LocalDateTime.parse("2020-03-19T00:00:00"));
         DataPoint<BigDecimal> _3 = DataPoint.of(TEN, LocalDateTime.parse("2020-03-18T00:00:00"));
-        ListNumericalTimeSeries timeSeries = new ListNumericalTimeSeries(Arrays.asList(_1, _2, _3));
+        ListNumerical timeSeries = new ListNumerical(Arrays.asList(_1, _2, _3));
         assertEquals(LocalDateTime.parse("2020-03-19T00:00:00"), timeSeries.datetime(1));
     }
 
@@ -31,8 +31,8 @@ public class ListNumericalTimeSeriesTest {
         DataPoint<BigDecimal> _1 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-20T00:00:00"));
         DataPoint<BigDecimal> _2 = DataPoint.of(ONE, LocalDateTime.parse("2020-03-19T00:00:00"));
         DataPoint<BigDecimal> _3 = DataPoint.of(TEN, LocalDateTime.parse("2020-03-18T00:00:00"));
-        ListNumericalTimeSeries timeSeries = new ListNumericalTimeSeries(Arrays.asList(_1, _2, _3));
-        NumericalTimeSeries timeSeries_2 = timeSeries.at(2);
+        ListNumerical timeSeries = new ListNumerical(Arrays.asList(_1, _2, _3));
+        Numerical timeSeries_2 = timeSeries.at(2);
 
         assertEquals(TEN, timeSeries_2.value(0));
         assertEquals(LocalDateTime.parse("2020-03-18T00:00:00"), timeSeries_2.datetime(0));
@@ -47,8 +47,8 @@ public class ListNumericalTimeSeriesTest {
         DataPoint<BigDecimal> b2 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-19T00:00:00"));
         DataPoint<BigDecimal> b3 = DataPoint.of(TEN, LocalDateTime.parse("2020-03-18T00:00:00"));
 
-        ListNumericalTimeSeries ts1 = new ListNumericalTimeSeries(Arrays.asList(a1, a2, a3));
-        ListNumericalTimeSeries ts2 = new ListNumericalTimeSeries(Arrays.asList(b1, b2, b3));
+        ListNumerical ts1 = new ListNumerical(Arrays.asList(a1, a2, a3));
+        ListNumerical ts2 = new ListNumerical(Arrays.asList(b1, b2, b3));
 
         assertTrue(ts1.lower(ts2));
         assertFalse(ts1.at(1).lower(ts2.at(1)));
@@ -63,8 +63,8 @@ public class ListNumericalTimeSeriesTest {
         DataPoint<BigDecimal> b2 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-19T00:00:00"));
         DataPoint<BigDecimal> b3 = DataPoint.of(TEN, LocalDateTime.parse("2020-03-18T00:00:00"));
 
-        ListNumericalTimeSeries ts1 = new ListNumericalTimeSeries(Arrays.asList(a1, a2, a3));
-        ListNumericalTimeSeries ts2 = new ListNumericalTimeSeries(Arrays.asList(b1, b2, b3));
+        ListNumerical ts1 = new ListNumerical(Arrays.asList(a1, a2, a3));
+        ListNumerical ts2 = new ListNumerical(Arrays.asList(b1, b2, b3));
 
         assertFalse(ts1.higher(ts2));
         assertTrue(ts1.at(1).higher(ts2.at(1)));
@@ -77,8 +77,8 @@ public class ListNumericalTimeSeriesTest {
         DataPoint<BigDecimal> b1 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-20T00:00:00"));
         DataPoint<BigDecimal> b2 = DataPoint.of(ONE, LocalDateTime.parse("2020-03-19T00:00:00"));
 
-        ListNumericalTimeSeries ts1 = new ListNumericalTimeSeries(Arrays.asList(a1, a2));
-        ListNumericalTimeSeries ts2 = new ListNumericalTimeSeries(Arrays.asList(b1, b2));
+        ListNumerical ts1 = new ListNumerical(Arrays.asList(a1, a2));
+        ListNumerical ts2 = new ListNumerical(Arrays.asList(b1, b2));
 
         assertTrue(ts1.crossesOver(ts2));
     }
@@ -90,8 +90,8 @@ public class ListNumericalTimeSeriesTest {
         DataPoint<BigDecimal> b1 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-20T00:00:00"));
         DataPoint<BigDecimal> b2 = DataPoint.of(ONE, LocalDateTime.parse("2020-03-19T00:00:00"));
 
-        ListNumericalTimeSeries ts1 = new ListNumericalTimeSeries(Arrays.asList(a1, a2));
-        ListNumericalTimeSeries ts2 = new ListNumericalTimeSeries(Arrays.asList(b1, b2));
+        ListNumerical ts1 = new ListNumerical(Arrays.asList(a1, a2));
+        ListNumerical ts2 = new ListNumerical(Arrays.asList(b1, b2));
 
         assertTrue(ts2.crossesUnder(ts1));
     }

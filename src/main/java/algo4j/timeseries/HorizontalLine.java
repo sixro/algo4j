@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * @author <a href="mailto:me@sixro.net" >Sixro</a>
  * @since 1.0
  */
-public class HorizontalLine implements NumericalTimeSeries {
+public class HorizontalLine implements Numerical {
 
     private final BigDecimal value;
 
@@ -22,7 +22,7 @@ public class HorizontalLine implements NumericalTimeSeries {
     }
 
     @Override
-    public NumericalTimeSeries at(int index) {
+    public Numerical at(int index) {
         return this;
     }
 
@@ -42,35 +42,35 @@ public class HorizontalLine implements NumericalTimeSeries {
     }
 
     @Override
-    public boolean crossesOver(NumericalTimeSeries series) {
+    public boolean crossesOver(Numerical series) {
         // TODO impl
         return false;
     }
 
     @Override
-    public boolean crossesUnder(NumericalTimeSeries series) {
+    public boolean crossesUnder(Numerical series) {
         // TODO impl
         return false;
     }
 
     @Override
-    public NumericalTimeSeries highest(int periods) {
+    public Numerical highest(int periods) {
         return this;
     }
 
     @Override
-    public NumericalTimeSeries lowest(int periods) {
+    public Numerical lowest(int periods) {
         return this;
     }
 
     @Override
-    public boolean higher(NumericalTimeSeries series) {
+    public boolean higher(Numerical series) {
         // TODO impl
         return false;
     }
 
     @Override
-    public boolean lower(NumericalTimeSeries series) {
+    public boolean lower(Numerical series) {
         // TODO impl
         return false;
     }

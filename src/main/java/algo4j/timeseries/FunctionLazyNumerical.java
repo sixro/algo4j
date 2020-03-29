@@ -4,25 +4,25 @@ import java.math.BigDecimal;
 import java.util.SortedMap;
 import java.util.function.Function;
 
-public class FunctionLazyNumericalTimeSeries<I, E extends TimeSeries<I, E>> extends LazyNumericalTimeSeries {
+public class FunctionLazyNumerical<I, E extends TimeSeries<I, E>> extends LazyNumerical {
 
     private final TimeSeries<I, E> origin;
     private final Function<I, BigDecimal> function;
 
-    public FunctionLazyNumericalTimeSeries(TimeSeries<I, E> origin, Function<I, BigDecimal> function) {
+    public FunctionLazyNumerical(TimeSeries<I, E> origin, Function<I, BigDecimal> function) {
         this.origin = origin;
         this.function = function;
     }
 
-    public FunctionLazyNumericalTimeSeries(SortedMap<Integer, DataPoint<BigDecimal>> cached, TimeSeries<I, E> origin, Function<I, BigDecimal> function) {
+    public FunctionLazyNumerical(SortedMap<Integer, DataPoint<BigDecimal>> cached, TimeSeries<I, E> origin, Function<I, BigDecimal> function) {
         super(cached);
         this.origin = origin;
         this.function = function;
     }
 
     @Override
-    protected NumericalTimeSeries createCopy(int index, SortedMap<Integer, DataPoint<BigDecimal>> cached) {
-        return new FunctionLazyNumericalTimeSeries<>(cached, origin.at(index), function);
+    protected Numerical createCopy(int index, SortedMap<Integer, DataPoint<BigDecimal>> cached) {
+        return new FunctionLazyNumerical<>(cached, origin.at(index), function);
     }
 
     @Override

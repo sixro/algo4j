@@ -10,17 +10,17 @@ import java.util.List;
  * @author <a href="mailto:me@sixro.net" >Sixro</a>
  * @since 1.0
  */
-public class ListNumericalTimeSeries extends AbstractNumericalTimeSeries {
+public class ListNumerical extends AbstractNumerical {
 
     private final List<DataPoint<BigDecimal>> list;
 
-    public ListNumericalTimeSeries(List<DataPoint<BigDecimal>> list) {
+    public ListNumerical(List<DataPoint<BigDecimal>> list) {
         this.list = list;
     }
 
     @Override
-    public NumericalTimeSeries at(int index) {
-        return new ListNumericalTimeSeries(list.subList(index, list.size()));
+    public Numerical at(int index) {
+        return new ListNumerical(list.subList(index, list.size()));
     }
 
     @Override

@@ -1,8 +1,7 @@
 package algo4j.indicator;
 
 import algo4j.timeseries.DataPoint;
-import algo4j.timeseries.ListNumericalTimeSeries;
-import algo4j.timeseries.NumericalTimeSeries;
+import algo4j.timeseries.ListNumerical;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +18,7 @@ public class SMATest {
         DataPoint<BigDecimal> a2 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-19T00:00:00"));
         DataPoint<BigDecimal> a3 = DataPoint.of(ONE, LocalDateTime.parse("2020-03-18T00:00:00"));
 
-        ListNumericalTimeSeries ts = new ListNumericalTimeSeries(Arrays.asList(a1, a2, a3));
+        ListNumerical ts = new ListNumerical(Arrays.asList(a1, a2, a3));
         SMA sma2 = SMA.of(2, ts);
 
         Assert.assertEquals(5, sma2.value(0).intValue());
@@ -32,7 +31,7 @@ public class SMATest {
         DataPoint<BigDecimal> a2 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-19T00:00:00"));
         DataPoint<BigDecimal> a3 = DataPoint.of(ONE, LocalDateTime.parse("2020-03-18T00:00:00"));
 
-        ListNumericalTimeSeries ts = new ListNumericalTimeSeries(Arrays.asList(a1, a2, a3));
+        ListNumerical ts = new ListNumerical(Arrays.asList(a1, a2, a3));
         SMA sma2 = SMA.of(2, ts);
 
         SMA sma2_1 = (SMA) sma2.at(1);
@@ -45,7 +44,7 @@ public class SMATest {
         DataPoint<BigDecimal> a2 = DataPoint.of(ZERO, LocalDateTime.parse("2020-03-19T00:00:00"));
         DataPoint<BigDecimal> a3 = DataPoint.of(ONE, LocalDateTime.parse("2020-03-18T00:00:00"));
 
-        ListNumericalTimeSeries ts = new ListNumericalTimeSeries(Arrays.asList(a1, a2, a3));
+        ListNumerical ts = new ListNumerical(Arrays.asList(a1, a2, a3));
         SMA sma2 = SMA.of(2, ts);
         Assert.assertEquals(0.5d, sma2.value(1).doubleValue(), 0.01);
 

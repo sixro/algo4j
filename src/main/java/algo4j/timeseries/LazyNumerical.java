@@ -2,28 +2,27 @@ package algo4j.timeseries;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-public abstract class LazyNumericalTimeSeries extends AbstractNumericalTimeSeries {
+public abstract class LazyNumerical extends AbstractNumerical {
 
     private final SortedMap<Integer, DataPoint<BigDecimal>> cached;
 
-    protected LazyNumericalTimeSeries() {
+    protected LazyNumerical() {
         this.cached = new TreeMap<>();
     }
 
-    protected LazyNumericalTimeSeries(SortedMap<Integer, DataPoint<BigDecimal>> cached) {
+    protected LazyNumerical(SortedMap<Integer, DataPoint<BigDecimal>> cached) {
         this.cached = new TreeMap<>(cached);
     }
 
-    protected abstract NumericalTimeSeries createCopy(int index, SortedMap<Integer, DataPoint<BigDecimal>> cached);
+    protected abstract Numerical createCopy(int index, SortedMap<Integer, DataPoint<BigDecimal>> cached);
 
     protected abstract DataPoint<BigDecimal> evaluateDataPoint(int index);
 
     @Override
-    public NumericalTimeSeries at(int index) {
+    public Numerical at(int index) {
         TreeMap<Integer, DataPoint<BigDecimal>> newCache = new TreeMap<>();
         SortedMap<Integer, DataPoint<BigDecimal>> subCache = cached.tailMap(index);
         subCache.forEach((idx, dp) -> newCache.put(idx.intValue() -index, dp));

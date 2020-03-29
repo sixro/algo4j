@@ -1,7 +1,7 @@
 package algo4j.indicator;
 
 import algo4j.timeseries.DataPoint;
-import algo4j.timeseries.ListNumericalTimeSeries;
+import algo4j.timeseries.ListNumerical;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -28,7 +28,7 @@ public class EMATest {
         DataPoint<BigDecimal> a09 = DataPoint.of(new BigDecimal("23.09"), LocalDateTime.parse("2020-03-13T00:00:00"));
         DataPoint<BigDecimal> a10 = DataPoint.of(new BigDecimal("22.81"), LocalDateTime.parse("2020-03-12T00:00:00"));
 
-        ListNumericalTimeSeries ts = new ListNumericalTimeSeries(Arrays.asList(a01, a02, a03, a04, a05, a06, a07, a08, a09, a10));
+        ListNumerical ts = new ListNumerical(Arrays.asList(a01, a02, a03, a04, a05, a06, a07, a08, a09, a10));
         EMA ema9 = EMA.of(9, ts);
 
         assertBigDecimalEquals(new BigDecimal("23.18"), ema9.value(0), 2, RoundingMode.HALF_UP);

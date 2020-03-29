@@ -8,6 +8,6 @@ import java.math.BigDecimal;
  * @author <a href="mailto:me@sixro.net" >Sixro</a>
  * @since 1.0
  */
-public interface NumericalTimeSeries extends ComparableTimeSeries<BigDecimal, NumericalTimeSeries> {
+public interface Numerical extends Comparable<BigDecimal, Numerical> {
 
 }

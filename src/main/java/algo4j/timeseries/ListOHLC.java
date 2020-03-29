@@ -13,28 +13,28 @@ public class ListOHLC implements OHLC {
     }
 
     @Override
-    public NumericalTimeSeries open() {
-        return new FunctionLazyNumericalTimeSeries<>(this, Value::open);
+    public Numerical open() {
+        return new FunctionLazyNumerical<>(this, Value::open);
     }
 
     @Override
-    public NumericalTimeSeries high() {
-        return new FunctionLazyNumericalTimeSeries<>(this, Value::high);
+    public Numerical high() {
+        return new FunctionLazyNumerical<>(this, Value::high);
     }
 
     @Override
-    public NumericalTimeSeries low() {
-        return new FunctionLazyNumericalTimeSeries<>(this, Value::low);
+    public Numerical low() {
+        return new FunctionLazyNumerical<>(this, Value::low);
     }
 
     @Override
-    public NumericalTimeSeries close() {
-        return new FunctionLazyNumericalTimeSeries<>(this, Value::close);
+    public Numerical close() {
+        return new FunctionLazyNumerical<>(this, Value::close);
     }
 
     @Override
-    public NumericalTimeSeries volume() {
-        return new FunctionLazyNumericalTimeSeries<>(this, Value::volume);
+    public Numerical volume() {
+        return new FunctionLazyNumerical<>(this, Value::volume);
     }
 
     @Override

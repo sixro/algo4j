@@ -13,15 +13,15 @@ import java.math.BigDecimal;
 @SuppressWarnings("SpellCheckingInspection")
 public interface OHLC extends TimeSeries<OHLC.Value, OHLC> {
 
-    NumericalTimeSeries open();
+    Numerical open();
 
-    NumericalTimeSeries high();
+    Numerical high();
 
-    NumericalTimeSeries low();
+    Numerical low();
 
-    NumericalTimeSeries close();
+    Numerical close();
 
-    NumericalTimeSeries volume();
+    Numerical volume();
 
     interface Value {
 

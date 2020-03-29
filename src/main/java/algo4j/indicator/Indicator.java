@@ -1,6 +1,6 @@
 package algo4j.indicator;
 
-import algo4j.timeseries.NumericalTimeSeries;
+import algo4j.timeseries.Numerical;
 
 /**
  * Represents an indicator.
@@ -8,5 +8,5 @@ import algo4j.timeseries.NumericalTimeSeries;
  * @author <a href="mailto:me@sixro.net" >Sixro</a>
  * @since 1.0
  */
-public interface Indicator extends NumericalTimeSeries {
+public interface Indicator extends Numerical {
 }
